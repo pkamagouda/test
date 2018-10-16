@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+  <ser:coreEntry isProxy="true" isEnabled="true" isTracingEnabled="false" isAutoPublish="false">
+    <ser:description>Localproxy to call ManageOrder.getOrderList_3 operation.</ser:description>
+    <ser:binding type="SOAP" isSoap12="false" xsi:type="con3:SoapBindingType" xmlns:con3="http://www.bea.com/wli/sb/services/bindings/config">
+      <con3:wsdl ref="NorthBoundInterfaces/manageorderservice_2_0"/>
+      <con3:port>
+        <con3:name>ManageOrderPort</con3:name>
+        <con3:namespace>http://soa.o2.co.uk/manageorderservice_2</con3:namespace>
+      </con3:port>
+      <con3:selector type="SOAP body"/>
+      <con3:WSI-compliant>false</con3:WSI-compliant>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+    <ser:ws-policy>
+      <ser:binding-mode>wsdl-policy-attachments</ser:binding-mode>
+    </ser:ws-policy>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>/ManageOrder_2_0/proxyservices/LocalProxygetOrderList_3</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific>
+      <http:inbound-properties/>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router>
+    <con:pipeline type="request" name="GetOrderList_3_request">
+      <con:stage name="Storinginbound">
+        <con:comment>Assigning inbound to a variable.</con:comment>
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="mainProxyInbound">
+            <con2:id>_ActionId-3128871105319267378--3862a24a.154e0d36856.-7f6a</con2:id>
+            <con1:expr>
+              <con2:xqueryText><![CDATA[<con:endpoint  	
+	name="ProxyService$ManageOrder_2_0$proxyservices$ManageOrder_2_0" 
+	xmlns:con="http://www.bea.com/wli/sb/context">
+	<con:service>
+	<con:operation>{data($operation)}</con:operation>
+	</con:service>
+	<con:transport>
+	<con:uri>/services/ManageOrder_2_0</con:uri>
+	<con:mode>request-response</con:mode>
+	<con:qualityOfService>best-effort</con:qualityOfService>
+	<con:request  	xsi:type="http:HttpRequestMetaData" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tran:headers  	xsi:type="http:HttpRequestHeaders" xmlns:tran="http://www.bea.com/wli/sb/transports">
+	<http:Content-Type>text/xml; charset=utf-8</http:Content-Type>
+	<http:SOAPAction></http:SOAPAction>
+	</tran:headers>
+	<tran:encoding  	xmlns:tran="http://www.bea.com/wli/sb/transports">utf-8</tran:encoding>
+	</con:request>
+	<con:response  	xsi:type="http:HttpResponseMetaData" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tran:headers  	xsi:type="http:HttpResponseHeaders" xmlns:tran="http://www.bea.com/wli/sb/transports">
+	<http:Content-Type>text/xml</http:Content-Type>
+	</tran:headers>
+	<tran:response-code  	xmlns:tran="http://www.bea.com/wli/sb/transports">0</tran:response-code>
+	</con:response>
+	</con:transport>
+	<con:security>
+	<con:transportClient>
+	<con:username>weblogic</con:username>
+	<con:principals>
+	<con:group>AdminChannelUsers</con:group>
+	<con:group>Administrators</con:group>
+	<con:group>IntegrationAdministrators</con:group>
+	</con:principals>
+	</con:transportClient>
+	</con:security>
+	</con:endpoint>]]></con2:xqueryText>
+            </con1:expr>
+          </con1:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Call_To_ManageOrder_2_0.getOrderList_3" errorHandler="_onErrorHandler-3128871105319267378--3862a24a.154e0d36856.-7ebf">
+        <con:comment>Calling ManageOrder.getOrderList_3 operation.</con:comment>
+        <con:context/>
+        <con:actions>
+          <con1:wsCallout>
+            <con2:id>_ActionId-3128871105319267378--3862a24a.154e0d36856.-7f8b</con2:id>
+            <con1:service xsi:type="ref:ProxyRef" ref="ManageOrder_2_0/proxyservices/ManageOrder_2_0" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con1:operation>getOrderList_3</con1:operation>
+            <con1:request>
+              <con1:body wrapped="true">$body</con1:body>
+              <con1:header>$header</con1:header>
+            </con1:request>
+            <con1:response>
+              <con1:body wrapped="true">body</con1:body>
+              <con1:header>header</con1:header>
+            </con1:response>
+            <con1:requestTransform>
+              <con1:javaCallout varName="">
+                <con2:id>_ActionId-3128871105319267378--3862a24a.154e0d36856.-7f14</con2:id>
+                <con1:archive ref="Utility/o2framework/o2framework"/>
+                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
+                <con1:method>public static void logOutbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
+                <con1:expr>
+                  <con2:xqueryText>$mainProxyInbound</con2:xqueryText>
+                </con1:expr>
+                <con1:expr>
+                  <con2:xqueryText>$outbound</con2:xqueryText>
+                </con1:expr>
+                <con1:expr>
+                  <con2:xqueryText>$header</con2:xqueryText>
+                </con1:expr>
+                <con1:expr>
+                  <con2:xqueryText>$body</con2:xqueryText>
+                </con1:expr>
+              </con1:javaCallout>
+            </con1:requestTransform>
+            <con1:responseTransform>
+              <con1:javaCallout varName="">
+                <con2:id>_ActionId-3128871105319267378--3862a24a.154e0d36856.-7ec0</con2:id>
+                <con1:archive ref="Utility/o2framework/o2framework"/>
+                <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
+                <con1:method>public static void logInbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
+                <con1:expr>
+                  <con2:xqueryText>$mainProxyInbound</con2:xqueryText>
+                </con1:expr>
+                <con1:expr>
+                  <con2:xqueryText>$outbound</con2:xqueryText>
+                </con1:expr>
+                <con1:expr>
+                  <con2:xqueryText>$header</con2:xqueryText>
+                </con1:expr>
+                <con1:expr>
+                  <con2:xqueryText>$body</con2:xqueryText>
+                </con1:expr>
+              </con1:javaCallout>
+            </con1:responseTransform>
+          </con1:wsCallout>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="GetOrderList_3_response"/>
+    <con:pipeline type="error" name="_onErrorHandler-3128871105319267378--3862a24a.154e0d36856.-7ebf">
+      <con:stage name="Propagate Fault">
+        <con:comment>Propagates the fault coming from the incoming technical service to the consuming business service</con:comment>
+        <con:context/>
+        <con:actions>
+          <con1:javaCallout varName="">
+            <con2:id>_ActionId-3128871105319267378--3862a24a.154e0d36856.-7e4e</con2:id>
+            <con1:archive ref="Utility/o2framework/o2framework"/>
+            <con1:className>uk.co.o2.soa.sf.o2fwk.impl.O2Framework</con1:className>
+            <con1:method>public static void logInbound(org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con1:method>
+            <con1:expr>
+              <con2:xqueryText>$mainProxyInbound</con2:xqueryText>
+            </con1:expr>
+            <con1:expr>
+              <con2:xqueryText>$outbound</con2:xqueryText>
+            </con1:expr>
+            <con1:expr>
+              <con2:xqueryText>$header</con2:xqueryText>
+            </con1:expr>
+            <con1:expr>
+              <con2:xqueryText>$body</con2:xqueryText>
+            </con1:expr>
+          </con1:javaCallout>
+          <con1:reply isError="true" xmlns:con1="http://www.bea.com/wli/sb/stages/config">
+            <con1:id>_ActionId-3128871105319267378--3862a24a.154e0d36856.-7e4d</con1:id>
+          </con1:reply>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:flow>
+      <con:pipeline-node name="GetOrderList_3">
+        <con:comment>Localproxy to call ManageOrder.getOrderList_3 operation.</con:comment>
+        <con:request>GetOrderList_3_request</con:request>
+        <con:response>GetOrderList_3_response</con:response>
+      </con:pipeline-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

@@ -1,0 +1,2193 @@
+<!--Date 			 Version 			 Author 			 Change Description 
+	 29/03/2010		 1.0 				 Amit Kumar 		 Initial Version
+	 03/05/2010		 1.1				 Sukhpreet Kaur 	 Updated to accomodate changes for archive retrieval
+ 	 28/03/2011		 1.2				 Pronisa Baruah 	 Updated to error codes for getOrderList_2 and getOrderDetails_2 operations.
+ 	 21/07/2011		 1.3				 LalithaKV			 Updated error codes for StrategicArchive Approach
+	 16/09/2011		 1.3				 Namratha K			 Updated error codes for submitUpgradeOrder_1 and getDeliveryOptions_1
+	 12/11/2011		 1.3				 Kumar			  	 Removed error codes for StrategicArchive Approach to decouple with OATC
+     07/05/2012      1.4                 Dinsa Devassy       Added   manageorder-36600-4501-V  as a part of OATC CCS UPGRADE SHOP in submitUpgradeOrder_1
+	 25/06/2012      1.5                 Dinsa Devassy       Modified the mapping(added/removed) as a part of New Carrier Project changes 
+	 17/08/2012      1.6                 Dinsa Devassy       Added  mapping for the new operation setConsignmentStateInOrder_1
+	 11/09/2012      1.7                 Dinsa Devassy       Added  mapping for the new operation getConsignmentDetails_1
+	 18/01/2013      2.0                 Deepthi Narayan     Added error code for CCA for Project 76 for submitOrder and submitUpgradeOrder_1 operations
+	 14/05/2013      2.1                 Dinsa Devassy       Added  few errorcodes in submitOrder operation as a part of OATC Acquisition Shop project
+	 05/08/2013      2.2                 Ravichandran R      Added  errorcodes for confirmOrderPayment_1 operation as part of P76 project
+	 07/08/2013      2.3                 Ravichandran R      Added CUK errorcodes for submitUpgradeOrder_1 operation as part of P76 project
+	 30/08/2013      2.4                 Ravichandran R      Updated error mapping section of submitUpgradeOrder_1 to map new error's returned from CUK.
+	 30/09/2013      2.5                 Deepthi Narayan     Added error codes in submitUpgradeOrder_1 to map the new error codes introduced in CUK API and Removed manageorder-36600-3114-E & manageorder-36600-3115-E from submitUpgradeOrder_1.
+	 16/01/2014      2.6                 Rani Eshwar         Added  manageorder-36600-3131-E as part of E-Commerce Shop-CPSR integration-Phase 2 project in submitUpgradeOrder_1
+	 20/11/2014      2.7              Addednew error codes for the new operations getOrderList_3,getOrderDetails_3 and updateOrderCollectionStatus operations 
+	 27/06/2015      2.8                  Subra Bose           Added error codes for the new operations getOrderSummary_1 operations 
+	 10/02/2016      2.9                  Dolly K          Added error codes for the getOrderDetails_3 operation
+	 -->
+	 
+<ec:errorMapConfig xmlns:ec="http://soa.o2.co.uk/config/ErrorMapConfig">
+   <ec:service name="ManageOrder_2_0">
+      <ec:operation name="getOrderList">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-3000-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3000-E</ec:code>
+               <ec:description>No orders found for the given order identifier.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+               <ec:description>Archive Order retrieval is supported only for a MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="getOrderDetails">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>CUK_6001_W</ec:code>
+               <ec:code>manageorder-36600-3001-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3001-E</ec:code>
+               <ec:description>No order details found for the given order identifier</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="submitOrder">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3059-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4000-V</ec:code>
+               <ec:description>The request does not comply with the XSD schema.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3056-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>Neither Card Details nor Card Token have been supplied</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3057-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3053-E</ec:code>
+               <ec:description>The Card Token in the request is missing. Please submit the Card Token.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3058-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3054-E</ec:code>
+               <ec:description>Card Payment Reference Number is missing, Please submit the Card Payment Reference Number.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <!-- Added manageorder-36600-3132-E as a part of Click&Collect Now Project in submitOrder by Vani-->
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3060-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3132-E</ec:code>
+               <ec:description>Store number and Store name not provided in the request</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-2000-F</ec:code>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-380002</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2000-F</ec:code>
+               <ec:description>One or more back end services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3003-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3003-E</ec:code>
+               <ec:description>No rows found: Most likely the existing Account could not be found. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3004-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3004-E</ec:code>
+               <ec:description>Order Number Being Processed: An order has already been submitted with the same order details and is either cancelled or in progress.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3005-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3005-E</ec:code>
+               <ec:description>Order Number Stuck: An order has already been submitted with the same order details and is in progress.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3006-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3006-E</ec:code>
+               <ec:description>Unique Order Identifier Already Exists. Internal error, unique reference for the order could not be created. Retry as is and if problem persists please contact service support team.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3007-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3007-E</ec:code>
+               <ec:description>This billing customer is a test customer and no CSA Id set. Please set the CSA Id and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3008-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3008-E</ec:code>
+               <ec:description>The CSA specified in the order message is not authorized to service billing customer. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3009-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3009-E</ec:code>
+               <ec:description>Missing Customer Number of Legal Entity. Please set legalEntityPartyReference in the orderHeader and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3010-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3010-E</ec:code>
+               <ec:description>Missing Customer Number of Legal Entity. Please set orderPlacedByPartyReferencein the orderHeader and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3011-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3011-E</ec:code>
+               <ec:description>The account set data contains more than one billing customer number. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3012-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3012-E</ec:code>
+               <ec:description>Existing account, but no existing account details have been passed. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3013-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3013-E</ec:code>
+               <ec:description>Incorrect details supplied for a new account. No legal entity customer reference has been passed or the passed entry does not correspond to the one in PartySet data. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3014-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3014-E</ec:code>
+               <ec:description>Incorrect details supplied for a new account. No billing customer contact reference has been passed or the passed entry does not correspond to the one in PartySet data. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3015-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3015-E</ec:code>
+               <ec:description>The customer entered as the legal entity for this order has already another order with post pay elements on it which is still in progress.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3016-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3016-E</ec:code>
+               <ec:description>accountSetReference specified on saleableProducts but not found on the account list. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3017-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3017-E</ec:code>
+               <ec:description>chargeToCrossChargeAccountReference specified on saleableProducts but not found on the account list. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3018-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3018-E</ec:code>
+               <ec:description>Order missing Billing Account ID Details. Post Pay Product but no accountNumber specified in the order line. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3019-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3019-E</ec:code>
+               <ec:description>Invalid combination of prepay and postpay tariffs. The order contains prepay and postpay tariffs in the same order line which is not supported. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3020-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3020-E</ec:code>
+               <ec:description>The order contains duplicate postpay MSISDNs. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3021-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3021-E</ec:code>
+               <ec:description>One of the postpay MSISDNs supplied on a New order has been used in a previous Order. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3022-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3022-E</ec:code>
+               <ec:description>The order contains duplicate postpay SIMs. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3023-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3023-E</ec:code>
+               <ec:description>The postpay SIM sent in the order is invalid. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3024-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3024-E</ec:code>
+               <ec:description>One of the postpay SIMs supplied on the order is already active, or is part of an existing Order or Service Request. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3025-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3025-E</ec:code>
+               <ec:description>The order contains duplicate prepay MSISDNs. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3026-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3026-E</ec:code>
+               <ec:description>One of the prepay MSISDNs supplied on a New order has been used in a previous Order. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3027-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3027-E</ec:code>
+               <ec:description>The order contains duplicate prepay SIMs. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3028-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3028-E</ec:code>
+               <ec:description>One of the prepay SIMs supplied on the order is already active, or is part of an existing Order or Service Request. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3029-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3029-E</ec:code>
+               <ec:description>Make and Model for Handsets are mandatory and need to be sent in the order. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3030-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3030-E</ec:code>
+               <ec:description>Failed to find the postpay tariff for the given product id. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3031-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3031-E</ec:code>
+               <ec:description>The postpay tariff in the order has no corresponding postpay sim in the same order line. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3032-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3032-E</ec:code>
+               <ec:description>Failed to find the TAM tariff for the given product id. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3033-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3033-E</ec:code>
+               <ec:description>Failed to find the POI tariff for the given product Id. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3034-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3034-E</ec:code>
+               <ec:description>Failed to map the billing customer number to an internal Billing customerID. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3035-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3035-E</ec:code>
+               <ec:description>Either the current, previous or oldest address specified does not contain the country or post code. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3036-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3036-E</ec:code>
+               <ec:description>The delivery address specified does not contain either the country, post code. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3037-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3037-E</ec:code>
+               <ec:description>The address validation status for either the current, previous or oldest address is missing. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3038-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3038-E</ec:code>
+               <ec:description>The address validation status for either the current, previous or oldest address is not known. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3039-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3039-E</ec:code>
+               <ec:description>There was an error retrieving the payment type by name GENEVA for recurring payments. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3040-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3040-E</ec:code>
+               <ec:description>There was an error retrieving the payment method for the specified card type in the recurring payment's credit card details. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3041-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3041-E</ec:code>
+               <ec:description>There was an error retrieving the payment type by name BANK for recurring payments. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3042-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3042-E</ec:code>
+               <ec:description>There was an error retrieving the payment type by name CHEQUE for recurring payments. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3043-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3043-E</ec:code>
+               <ec:description>The payment method for the specified card type in one-off credit card details is not recognised. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3044-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3044-E</ec:code>
+               <ec:description>One Off Payment Name GENEVA Not recognised. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3045-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3045-E</ec:code>
+               <ec:description>Chargeable Delivery Option is selected in the order but no delivery details associated. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3046-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3046-E</ec:code>
+               <ec:description>There was an error retrieving the Delivery Timeslot Details. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3047-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3047-E</ec:code>
+               <ec:description>There was an error retrieving the Insurance Duration Details. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3048-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3048-E</ec:code>
+               <ec:description>The Insurance Duration Details retrieved is not valid. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3049-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3049-E</ec:code>
+               <ec:description>No Insurance Duration Details found for the given product Id. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3050-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3050-E</ec:code>
+               <ec:description>A Party set reference is missing from the PartySet list. Please correct and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3051-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3051-E</ec:code>
+               <ec:description>There was an error retrieving the payment method for the specified card type in the one-off credit card details. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>submitinstallorder-36730-3055-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>CCA Number is specified on saleable product, but not found in the list of CCA Details.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-3075-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3075-E</ec:code>
+               <ec:description>Submission of only New order is currently supported. Please select orderType as NE and resend.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="validateOrder">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BR-VO-002</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-5000-R</ec:code>
+               <ec:description>The number of products ordered has exceeded the maximum allowed for this channel.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BR-VO-001</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-5001-R</ec:code>
+               <ec:description>At least one product is required for an order to be placed.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="getOrderList_2">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+               <ec:description>Archive Order retrieval is supported only for a MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>orderenquiry-36780-2501-F</ec:code>
+               <ec:code>utilgetorderlist-9280-2501-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more back end services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+               <ec:code>orderenquiry-36780-2503-F</ec:code>
+               <ec:code>utilgetorderlist-9280-3612-E</ec:code>
+               <ec:code>orderenquiry-36780-4501-V</ec:code>
+               <ec:code>utilgetorderlist-9280-4501-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+               <ec:code>orderenquiry-36780-2502-F</ec:code>
+               <ec:code>utilgetorderlist-9280-2502-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>orderenquiry-36780-2504-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3613-E</ec:code>
+               <ec:description>Backend system error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>utilgetorderlist-9280-3999-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3999-E</ec:code>
+               <ec:description>Unknown/Uncaught error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="getOrderDetails_2">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>orderenquiry-36780-2501-F</ec:code>
+               <ec:code>utilgetorderdetails-9281-2501-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more back end services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+               <ec:code>orderenquiry-36780-2503-F</ec:code>
+               <ec:code>utilgetorderdetails-9281-3612-E</ec:code>
+               <ec:code>orderenquiry-36780-4501-V</ec:code>
+               <ec:code>utilgetorderdetails-9281-4501-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>orderenquiry-36780-2504-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3613-E</ec:code>
+               <ec:description>Backend system error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+               <ec:code>orderenquiry-36780-2502-F</ec:code>
+               <ec:code>utilgetorderlist-9280-2502-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>utilgetorderdetails-9281-3000-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3000-E</ec:code>
+               <ec:description>No orders found for specified Order Number.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>utilgetorderdetails-9281-3001-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3001-E</ec:code>
+               <ec:description>No orders found for specified MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>utilgetorderlist-9280-3999-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3999-E</ec:code>
+               <ec:description>Unknown/Uncaught error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="submitUpgradeOrder_1">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>AMS:010644</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+               <ec:code>AMS:000260</ec:code>
+			   <ec:code>AMS:010570</ec:code>
+			   <ec:code>AMS:011859</ec:code>
+			   <ec:code>AMS:012170</ec:code>
+			   <ec:code>AMS:011854</ec:code>
+			   <ec:code>AMS:011855</ec:code>
+			   <ec:code>AMS:011857</ec:code>
+			   <ec:code>AMS:011858</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+               <ec:code>AMS:010011</ec:code>
+               <ec:code>AMS:010012</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3613-E</ec:code>
+               <ec:description>Backend system error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010616</ec:code>
+               <ec:code>AMS:010618</ec:code>
+               <ec:code>AMS:010671</ec:code>
+               <ec:code>AMS:011927</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010571</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3076-E</ec:code>
+               <ec:description>Postpay MSISDN is not active in Companion.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010572</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3077-E</ec:code>
+               <ec:description>Postpay MSISDN already in Upgrade</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010573</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3078-E</ec:code>
+               <ec:description>Customer Number provided is not found in Companion.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010574</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3079-E</ec:code>
+               <ec:description>Partner value unknown to Companion.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010575</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3080-E</ec:code>
+               <ec:description>In Accessory section, risk value must also be passed when dispatcher details are given.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010576</ec:code>
+               <ec:code>AMS:011806</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3081-E</ec:code>
+               <ec:description>In Adjustment section, the adjustmentReason value is not recognized.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010577</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3082-E</ec:code>
+               <ec:description>Delivery options must be populated if chargeableDeliveryOption is passed.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010578</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3083-E</ec:code>
+               <ec:description>In Handsets section, risk value must also be passed when dispatcher details are given.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010579</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3084-E</ec:code>
+               <ec:description>The postpay Insurance product id provided is not found in the system.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010581</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3085-E</ec:code>
+               <ec:description>Invalid SSN (SIM serial number) passed in the postpay SIM section.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010582</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3086-E</ec:code>
+               <ec:description>The SSN (SIM serial number) provided in the postpay SIM section is not found in the system.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010583</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3087-E</ec:code>
+               <ec:description>The SSN (SIM serial number) value provided in the postpay SIM section is already active against another MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010584</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3088-E</ec:code>
+               <ec:description>The SSN (SIM serial number) value provided in the postpaySIM section is already present in another active order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010585</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3089-E</ec:code>
+               <ec:description>The product id given in postpay tariff section is not found in the system.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010586</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3090-E</ec:code>
+               <ec:description>The product id given in the tariff modifiers of the postpay tariff section is not found in the system.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010587</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3091-E</ec:code>
+               <ec:description>Payment authorisation response code passed is not recognised.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010588</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3092-E</ec:code>
+               <ec:description>Delivery details missing. This must always be provided when either standardDeliveryCharge or chargeableDeliveryOption is provided.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010615</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3093-E</ec:code>
+               <ec:description>No account found for MSISDN with respect to payment details</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010620</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3094-E</ec:code>
+               <ec:description>In chargeableDeliveryOption section, the timeslot value provided is not recognized.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010623</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3095-E</ec:code>
+               <ec:description>The MSISDN to be upgraded not found in the system.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010694</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3096-E</ec:code>
+               <ec:description>Payment details: settlementResponse code passed is not known to Companion.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010695</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3097-E</ec:code>
+               <ec:description>Duplicate order number.Please check the input &amp;amp; resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010696</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3098-E</ec:code>
+               <ec:description>At least one of handset, postPayTariff or adjustment sections must be present in the input.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010697</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3099-E</ec:code>
+               <ec:description>standardDeliveryCharge flag not set to Y even though standardDeliveryCharge section has been provided in the input</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011714</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3100-E</ec:code>
+               <ec:description>Early Upgrade reference provided has already been used on another Upgrade order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011728</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3101-E</ec:code>
+               <ec:description>Early Upgrade reference number missing in input.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011715</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3102-E</ec:code>
+               <ec:description>Early Upgrade Reference number not found in the system.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011716</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3103-E</ec:code>
+               <ec:description>Early Upgrade Reference number has expired.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011717</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3104-E</ec:code>
+               <ec:description>Early upgrade fee does not match the value that the user is entitled for.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011718</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3105-E</ec:code>
+               <ec:description>The postpay tariff provided is not allowed as it is a member of a tariff family that is currently excluded from early upgrade.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011729</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3106-E</ec:code>
+               <ec:description>EarlyUpgrade fee missing in input, although earlyUpgrade is being taken.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011804</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3107-E</ec:code>
+               <ec:description>Neither card details nor the card token details have been provided in the input.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012016</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3108-E</ec:code>
+               <ec:description>CCA Number is specified on saleable product, but not found in the list of CCA Details.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012097</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3109-E</ec:code>
+               <ec:description>There has been a problem looking up the recurring payment type in the database.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:011805</ec:code>
+               <ec:code>AMS:011916</ec:code>
+               <!--07/05/2012      1.4                 Dinsa Devassy      Added   manageorder-36600-4501-V  as a part of OATC CCS UPGRADE SHOP in submitUpgradeOrder_1-->
+               <ec:code>manageorder-36600-4501-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012167</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3110-E</ec:code>
+               <ec:description>Upgrade Entitlement Reference does not exist. This should match a reference number passed back by the upgrade entitilement service.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>		
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012171</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3112-E</ec:code>
+               <ec:description>The Upgrade Entitlement specified in the request has expired.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012195</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3113-E</ec:code>
+               <ec:description>FAILED: The upgrade order fails to meet the conditions of the customer's upgrade entitlement. Reasons for failure are: </ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011807</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3116-E</ec:code>
+               <ec:description>This Upgrade request is not entitled to submit Upgrade Orders with a CCA Settlement. The CCA settlement has to be done prior to submitting upgrade order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>		
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011897</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3117-E</ec:code>
+               <ec:description>The requesting application is not entitled to submit upgrade orders which are Fast Track Upgrades</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011943</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3118-E</ec:code>
+               <ec:description>The requesting application is not entitled to override this upgrade order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011945</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3119-E</ec:code>
+               <ec:description>The requesting application cannot place an upgrade to a CCA tariff unless they have the authority to use the override flag and have set it on the order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011950</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3120-E</ec:code>
+               <ec:description>The requesting application cannot place an upgrade to a handset tariff unless they have the authority to use the override flag and have set it on the order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012031</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3121-E</ec:code>
+               <ec:description>The requesting application cannot place a request to upgrade to a handset tariff</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012034</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3122-E</ec:code>
+               <ec:description>The requesting application cannot place a request to upgrade to a CCA tariff</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012073</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3123-E</ec:code>
+               <ec:description>The requesting application cannot place a request to upgrade to a SIM only tariff unless they have the authority to use the override flag and have set it on the order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012074</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3124-E</ec:code>
+               <ec:description>The requesting application cannot place a request to upgrade to a SIM only tariff.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012211</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3125-E</ec:code>
+               <ec:description>The MSISDN to be upgraded has an active CCA that has not being paid off in the order.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011850</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3126-E</ec:code>
+               <ec:description>Card token information is missing.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011851</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3127-E</ec:code>
+               <ec:description>Card payment reference number is missing.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011852</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3128-E</ec:code>
+               <ec:description>The product Id is missing for the account adjustment.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011853</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3129-E</ec:code>
+               <ec:description>The product name is missing for the account adjustment.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>	
+		<ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011856</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3130-E</ec:code>
+               <ec:description>The reason for account adjustment is missing.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+	<!--16/01/2014          2.6             Rani Eshwar     Added  manageorder-36600-3131-E as part of E-Commerce Shop-CPSR integration-Phase 2 project in submitUpgradeOrder_1-->	 
+        <ec:errorMap>
+		    <ec:sourceErrorCodes>
+			    <ec:code>AMS:012234</ec:code>
+			</ec:sourceErrorCodes>
+			<ec:destErrorCode>
+			    <ec:code>manageorder-36600-3131-E</ec:code>
+			    <ec:description>External Payment Id is missing.</ec:description>
+			</ec:destErrorCode>
+		</ec:errorMap>
+		<!-- Added manageorder-36600-3132-E as a part of Click&Collect Now Project in submitUpgradeOrder_1 by Vani-->
+        <ec:errorMap>
+		    <ec:sourceErrorCodes>
+			    <ec:code>AMS:012499</ec:code>
+			</ec:sourceErrorCodes>
+			<ec:destErrorCode>
+			   <ec:code>manageorder-36600-3132-E</ec:code>
+			   <ec:description>Store number and Store name not provided in the request.</ec:description>
+			</ec:destErrorCode>
+		</ec:errorMap>	  		
+      </ec:operation>
+      <ec:operation name="getDeliveryOptions_1">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>AMS:010644</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+               <ec:code>AMS:010002</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:000259</ec:code>
+               <ec:code>AMS:000260</ec:code>
+               <ec:code>AMS:000261</ec:code>
+               <ec:code>AMS:011926</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="setConsignmentStateInOrder_1">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>AMS:010644</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011977</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>Order Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011978</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3053-E</ec:code>
+               <ec:description>Consignment Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011979</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3054-E</ec:code>
+               <ec:description>Dispatch Reference provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+               <ec:code>AMS:010002</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:000259</ec:code>
+               <ec:code>AMS:011980</ec:code>
+               <ec:code>AMS:011981</ec:code>
+               <ec:code>AMS:011983</ec:code>
+               <ec:code>AMS:011991</ec:code>
+               <ec:code>AMS:011986</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="getConsignmentDetails_1">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>AMS:010644</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011987</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>Order Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011988</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3053-E</ec:code>
+               <ec:description>Consignment Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011989</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3055-E</ec:code>
+               <ec:description>Store Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011990</ec:code>
+               <ec:code>manageorder-36600-3056-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3056-E</ec:code>
+               <ec:description>The request does not  contain one of order number, consignment number or store number in the input.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011993</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3057-E</ec:code>
+               <ec:description>The order does not contain any physical products. Therefore nothing to collect from store.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011994</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3058-E</ec:code>
+               <ec:description>There are no consignment found that have not already been booked in.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011995</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3059-E</ec:code>
+               <ec:description>There is no consignment found.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+               <ec:code>AMS:010002</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:011992</ec:code>
+               <!--<ec:code>AMS:011980</ec:code> 
+				<ec:code>AMS:011981</ec:code>-->
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+      <ec:operation name="confirmOrderPayment_1">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+               <ec:code>AMS:010011</ec:code>
+               <ec:code>AMS:010012</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012188</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>Order Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012189</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3060-E</ec:code>
+               <ec:description>Order Associated with this OrderNumber has already been cancelled</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012197</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3061-E</ec:code>
+               <ec:description>Cancellation of this order has already been requested</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012198</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3062-E</ec:code>
+               <ec:description>This Order has already been Completed</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>		 
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012208</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3063-E</ec:code>
+               <ec:description>Payment processing has already been completed.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012210</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3064-E</ec:code>
+               <ec:description>The order details passed did not indicate that there is an outstanding payment</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>BEA-381916</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:012187</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:operation>
+	  <ec:operation name="getOrderDetails_3">
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+               <ec:code>AMS:010002</ec:code>
+               <ec:code>AMS:010012</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010644</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010644</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012174</ec:code>
+               </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3000-E</ec:code>
+               <ec:description>No orders found for specified Order Number.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012175</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3001-E</ec:code>
+               <ec:description>No orders found for specified MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:012172</ec:code>
+			   <ec:code>AMS:010721</ec:code>
+			 </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request.Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+			    <ec:code>BEA-381916</ec:code>
+				 <ec:code>BEA-382000</ec:code>
+				 <ec:code>BEA-382510</ec:code>
+			     <ec:code>BEA-382513</ec:code>
+				 <ec:code>BEA-382505</ec:code>
+				 <ec:code>BEA-382515</ec:code>
+			      <ec:code>BEA-382516</ec:code>
+				  <ec:code>RUL-COM-001</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+             <ec:code>AMS:012232</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3133-E</ec:code>
+              <ec:description>No orders found for specified payment reference number.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+             <ec:code>AMS:012236</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3134-E</ec:code>
+              <ec:description>Specified payment  Reference Number  has  more then one orders.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+             <ec:code>AMS:012411</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>Order Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+             <ec:code>BEA-380000</ec:code>
+			   <ec:code>BEA-381918</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+	</ec:operation>
+	<ec:operation name="updateOrderCollectionStatus">
+	     <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010002</ec:code>
+			   <ec:code>AMS:010001</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:012411</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3052-E</ec:code>
+               <ec:description>Order Number provided in the request is unavailable.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:012412</ec:code>
+			   <ec:code>AMS:012406</ec:code>
+               <ec:code>AMS:012407</ec:code>
+			   <ec:code>AMS:012408</ec:code>
+               <ec:code>AMS:012409</ec:code>
+			   <ec:code>AMS:012410</ec:code>
+               <ec:code>AMS:012413</ec:code>
+			   <ec:code>AMS:012414</ec:code>
+               <ec:code>AMS:012415</ec:code>
+			   <ec:code>AMS:012416</ec:code>
+			   <ec:code>AMS:012512</ec:code>
+			   <ec:code>AMS:012513</ec:code>
+			   <ec:code>AMS:012505</ec:code>
+			   <ec:code>AMS:012506</ec:code>
+			   <ec:code>AMS:012507</ec:code>
+			   <ec:code>AMS:012515</ec:code>
+			   <ec:code>AMS:012508</ec:code>
+			   <ec:code>AMS:012509</ec:code>
+			   <ec:code>AMS:012510</ec:code>
+			   <ec:code>AMS:012511</ec:code>
+			   <ec:code>AMS:012524</ec:code>
+			   <ec:code>AMS:012523</ec:code>
+			   <ec:code>AMS:012531</ec:code>
+			   <ec:code>AMS:012538</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request.Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>BEA-382516</ec:code>
+              </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+               </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+	</ec:operation>
+	<ec:operation name="getOrderList_3">
+	 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:011108</ec:code>
+			   <ec:code>AMS:010721</ec:code>
+			   <ec:code>AMS:012532</ec:code>
+			   <ec:code>AMS:012533</ec:code>
+			   <ec:code>AMS:012545</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request.Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+               <ec:description>Archive Order retrieval is supported only for a MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+			   <ec:code>BEA-381918</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+			   <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+			   <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382505</ec:code>
+			   <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+			   </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010644</ec:code>
+               <ec:code>BEA-380002</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:011108</ec:code>
+               <ec:code>AMS:010721</ec:code>
+           </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request. Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+	 </ec:operation>
+	 <ec:operation name="getOrderSummary_1">
+	 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>AMS:011108</ec:code>
+			   <ec:code>AMS:010721</ec:code>
+			   <ec:code>AMS:012532</ec:code>
+			   <ec:code>AMS:012533</ec:code>
+			   <ec:code>AMS:012545</ec:code>
+			   <ec:code>AMS:012172</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4501-V</ec:code>
+               <ec:description>Invalid Request.Please check the input and resubmit.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		    <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+               <ec:code>AMS:011108</ec:code>
+               <ec:code>INP-COM-001</ec:code>
+               <ec:code>orderenquiry-36780-2503-F</ec:code>
+               <ec:code>orderenquiry-36780-4501-V</ec:code>
+               <ec:code>manageorder-36600-2001-F</ec:code>
+               <ec:code>submitinstallorder-36730-4000-V</ec:code>
+               <ec:code>submitinstallorder-36730-2001-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2001-F</ec:code>
+               <ec:description>Internal service error. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010001</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3614-E</ec:code>
+               <ec:description>Backend database error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4001-V</ec:code>
+               <ec:description>Archive Order retrieval is supported only for a MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+			   <ec:code>BEA-381918</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2502-F</ec:code>
+               <ec:description>Service call timed out. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+			   <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+			   <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382505</ec:code>
+			   <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+			   </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3612-E</ec:code>
+               <ec:description>Internal service error has occurred.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		 <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>AMS:010644</ec:code>
+               <ec:code>BEA-380002</ec:code>
+			</ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2501-F</ec:code>
+               <ec:description>One or more backend services are not available at the moment. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		
+		  <ec:errorMap>
+            <ec:sourceErrorCodes>
+			
+			<ec:code>manageorder-36600-3001-E</ec:code>
+			 <ec:code>AMS:012175</ec:code>
+           </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3001-E</ec:code>
+               <ec:description>No orders found for specified MSISDN.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+		   <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>manageorder-36600-3000-E</ec:code>
+			       <ec:code>AMS:012174</ec:code>
+               </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-3000-E</ec:code>
+               <ec:description>No orders found for specified Order Number.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+	 </ec:operation>
+	<ec:commonMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380002</ec:code>
+               <ec:code>orderenquiry-36780-2501-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2000-F</ec:code>
+               <ec:description>One or more back ends may be down. Please try again later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382505</ec:code>
+               <ec:code>submitinstallorder-36730-3054-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-4000-V</ec:code>
+               <ec:description>The request does not comply with the XSD schema.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-382030</ec:code>
+               <ec:code>BEA-381916</ec:code>
+               <ec:code>BEA-382000</ec:code>
+               <ec:code>BEA-382510</ec:code>
+               <ec:code>BEA-382513</ec:code>
+               <ec:code>BEA-382515</ec:code>
+               <ec:code>BEA-382516</ec:code>
+               <ec:code>AMS:011108</ec:code>
+               <ec:code>INP-COM-001</ec:code>
+               <ec:code>orderenquiry-36780-2503-F</ec:code>
+               <ec:code>orderenquiry-36780-4501-V</ec:code>
+               <ec:code>manageorder-36600-2001-F</ec:code>
+               <ec:code>submitinstallorder-36730-4000-V</ec:code>
+               <ec:code>submitinstallorder-36730-2001-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2001-F</ec:code>
+               <ec:description>Internal service error. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>CUK_3001_E</ec:code>
+               <ec:code>EAI:CAN0010</ec:code>
+               <ec:code>orderenquiry-36780-2504-F</ec:code>
+               <ec:code>REF-COM-001</ec:code>
+               <ec:code>submitinstallorder-36730-2002-F</ec:code>
+               <ec:code>submitinstallorder-36730-3053-E</ec:code>
+               <ec:code>submitinstallorder-36730-3052-E</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2002-F</ec:code>
+               <ec:description>Backend Internal error. Please contact service support for help on this.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+         <ec:errorMap>
+            <ec:sourceErrorCodes>
+               <ec:code>BEA-380000</ec:code>
+               <ec:code>BEA-381918</ec:code>
+               <ec:code>orderenquiry-36780-2502-F</ec:code>
+               <ec:code>submitinstallorder-36730-2003-F</ec:code>
+            </ec:sourceErrorCodes>
+            <ec:destErrorCode>
+               <ec:code>manageorder-36600-2003-F</ec:code>
+               <ec:description>Service call has timed out. Please resubmit your request later.</ec:description>
+            </ec:destErrorCode>
+         </ec:errorMap>
+      </ec:commonMap>
+      <ec:unknownError>
+         <ec:destErrorCode>
+            <ec:code>manageorder-36600-3002-E</ec:code>
+            <ec:description>Unknown/Uncaught error has occurred. Please contact service support for help on this.</ec:description>
+         </ec:destErrorCode>
+      </ec:unknownError>
+   </ec:service>
+</ec:errorMapConfig>

@@ -1,0 +1,30 @@
+<service-config-envelope>
+			<service-config-header/>
+			<service-config-data>			            
+		                <PortalDomain>o2.co.uk</PortalDomain>		               
+		                <CountryNamePolitical>UK</CountryNamePolitical>						
+						<CountryNameGeographical>GB</CountryNameGeographical>						
+						<ESMEOrderItemCategory>
+							<Category>SAD</Category>
+							<Category>PTM</Category>							
+						</ESMEOrderItemCategory>
+                         <Segmentation>
+							<Platinum>Platinum</Platinum>
+							<Gold>Gold</Gold>
+                            <Silver>Silver</Silver>
+							<Bronze>Bronze</Bronze>
+							<Select>Select</Select>
+							<none>none</none>
+							<Sel_Inv>Sel_Inv</Sel_Inv>
+							<Sel_Few>Sel_Few</Sel_Few>							
+						</Segmentation>
+						 <CustomerTier>
+							<Platinum>Platinum</Platinum>
+							<Gold>Gold</Gold>
+                            <Silver>Silver</Silver>
+							<Bronze>Bronze</Bronze>
+							<Blue>Blue</Blue>							
+						</CustomerTier>						
+			</service-config-data>
+</service-config-envelope>
+

@@ -1,0 +1,475 @@
+<!--
+  Date 			Version 		Author 			 		Change Description 
+29/03/2010		 1.0 			Amit Kumar 		 		Initial Version
+03/05/2010		 1.1			Sukhpreet Kaur 		 	Updated to accomodate changes for archive retrieval
+19/05/2010		 1.2			Sadiq Shaik 		 	Added Default value for dateOfBirth
+29/07/2010		 1.3			Harpriya Kapoor  		Added config values for validateOrder operation
+28/03/2011		 1.4			Pronisa Baruah  		Added config values for getOrderDetails_2 operation
+18/05/2011		 1.5			Pronisa Baruah  		Added config values for getOrderDetails and getOrderDetails_2 operation for "NOT APPLICABLE" data.
+21/07/2011		 1.6			Lalitha KV				Added config values for migration from HOPS to StrategicArchive.
+21/07/2011		 1.7			Namratha				Added config values for the OATC CSS sales upgrade shop.
+12/11/2011       1.8            Kumar                   Removed Hops Srategic Archive config value to decouple with OATC
+07/05/2012       1.4            Dinsa Devassy      		Added  parameters(for adressmapping) as a part of OATC CCS UPGRADE SHOP in submitUpgradeOrder_1
+17/08/2012       1.5            Dinsa Devassy      		Added  parameters for the new operation setConsignmentStateInOrder_1
+11/09/2012       1.6            Dinsa Devassy      		Added  parameters for the new operation getConsignmentDetails_1
+24/04/2013       2.0            Deepthi Narayan     	Added NotSet element and status for submitOrder operation for A&R PL project
+02/08/2013		 2.1			Ravichandran R  		Added config values for confirmOrderPayment_1
+24/09/2014		 2.2			Dolly 		            Added clickAndCollectNow as part of Click & Collect-Now project.
+16/04/2015       2.3            Rashmi                  Added  Y element as part of Click & Collect Now project. 
+25/06/2015       2.4            Subra Bose              Added succesCode as part of Online Digital R&R project.
+10/02/2016       2.5            Dolly K              Added ParameterName and ReferenceDetailsOperations as part of Telesales Franchise Phase 2.
+27/05/2016       2.6            Subra Bose            Added versionID and masked as part of GlobalCare and Running.
+10/06/2016       2.7            Chandrakala Srinivasan    Added versionId and parameterName for confirmOrderTradeInCollection_1 and submitUpgradeOrder_1,setConsignmentStateInOrder_1,getConsignmentDetails_1,updateOrderCollectionStatus,getOrderDetails_3 operations as part of Refresh Buy out.
+16/09/2016       2.7            Meghana P K              Added element paymentMethod as part of Enhanced Recycle Project.
+15/09/2017		 2.8            Megha N					Added element refreshFinalPayment as part of Refresh Evolution Project 
+27/09/2017       2.9            Megha N                 Added element additionalPromotions and versionIDPromotions and versionId for submitUpgradeOrder_1 as part of Promotions and Airtime Discounts Project.
+16/09/2016       3.0            Meghana K R              Added element Version as part of IDD Phase 2.
+-->
+
+<service-config-envelope>
+   <service-config-header/>
+   <service-config-data>
+      <manageOrder_2_0>
+	   <!--  Added element refreshFinalPayment as part of Refresh Evolution Project..-->
+	  <refreshFinalPayment>refreshFinalPayment</refreshFinalPayment>
+	  
+	  <!-- Added element additionalPromotions and versionIDPromotions as part of Promotions and Airtime Discounts Project.. -->
+	  <additionalPromotions>additionalPromotions</additionalPromotions>
+	  <versionIDPromotions>8</versionIDPromotions>
+	   <!--  Added element paymentMethod as part of Enhanced Recycle Project..-->
+	  <recyclePaymentDetails>
+	  <paymentMethod>BACS</paymentMethod>
+	  </recyclePaymentDetails>
+	   <versionID>6</versionID>
+	    <!--  Added element Version as part of IDD Phase 2..-->
+	  <version>3</version>
+	  <signatureStatus>X</signatureStatus>
+	  <masked>************</masked>
+	  <ParameterName>additionalProductInfo</ParameterName>
+	  <!-- 10/06/2016       2.7            Chandrakala Srinivasan    Added versionId and parameterName for confirmOrderTradeInCollection_1 and submitUpgradeOrder_1,setConsignmentStateInOrder_1,getConsignmentDetails_1,updateOrderCollectionStatus,getOrderDetails_3 operations as part of Refresh Buy out.-->
+	  <confirmOrderTradeInCollection>
+	   <versionID>1</versionID>
+	   <statusCode>manageorder-36600-0000-S</statusCode>
+	   <externalDescription>The request is successfully processed</externalDescription>
+	  </confirmOrderTradeInCollection>
+	   <submitUpgradeOrder_1>
+	   <versionID>1</versionID>
+	    <!-- 17/10/2017  2.9 Megha N   Added versionId for submitUpgradeOrder_1 as part of part of Promotions and Airtime Discounts Project..-->
+	    <versionID>2</versionID>
+	  </submitUpgradeOrder_1>
+	   <setConsignmentStateInOrder_1>
+	   <versionID>1</versionID>
+	   <orderStatus>COLLECTED</orderStatus>
+	  </setConsignmentStateInOrder_1>
+	    <getConsignmentDetails_1>
+	   <parameterName>tradeInDetails</parameterName>
+	  </getConsignmentDetails_1>
+	  <updateOrderCollectionStatus>
+	   <versionID>1</versionID>
+	    <collectionStatus>COLLECTED</collectionStatus>
+	  </updateOrderCollectionStatus>
+	   <getOrderDetails_3>
+	   <versionID>7</versionID>
+	   <parameterName>promotions</parameterName>
+	  </getOrderDetails_3>
+	   <ReferenceDetailsOperations>
+  <BoltonsById>getProductDetailsById</BoltonsById> 
+  </ReferenceDetailsOperations>
+	  <successCode>manageorder-36600-0000-S</successCode>
+	  <startRowNumber>1</startRowNumber>
+	  <numRowsRequired>99999</numRowsRequired>
+         <notSet>Not Set</notSet>
+         <portalDomain>o2.co.uk</portalDomain>
+         <countryNamePolitical>UK</countryNamePolitical>
+         <countryNameGeographical>GB</countryNameGeographical>
+         <ESMEOrderItemCategory>
+            <category>SAD</category>
+            <category>PTM</category>
+         </ESMEOrderItemCategory>
+         <segmentation>
+            <platinum>Platinum</platinum>
+            <gold>Gold</gold>
+            <silver>Silver</silver>
+            <bronze>Bronze</bronze>
+            <select>Select</select>
+            <none>none</none>
+            <sel_inv>Sel_Inv</sel_inv>
+            <sel_few>Sel_Few</sel_few>
+         </segmentation>
+         <customerTier>
+            <platinum>Platinum</platinum>
+            <gold>Gold</gold>
+            <silver>Silver</silver>
+            <bronze>Bronze</bronze>
+            <blue>Blue</blue>
+         </customerTier>
+         <useValidateRules>N</useValidateRules>
+         <!--OrderType as New Order-->
+         <orderType>NE</orderType>
+		 <Y>Y</Y>
+         <dateOfBirth>1900-01-01</dateOfBirth>
+         <!--Data for handling validation failure from technical service-->
+         <errorMap>
+            <ALSBvalidationErrorCode>BEA-382505</ALSBvalidationErrorCode>
+            <destinationErrorCode>manageorder-36600-2001-F</destinationErrorCode>
+         </errorMap>
+         <unknownErrorCode>manageorder-36600-3002-E</unknownErrorCode>
+         <Unknown>Unknown</Unknown>
+         <TrueValue>true</TrueValue>
+         <falseValue>false</falseValue>
+         <!--Order placed online-->
+         <Online>online</Online>
+         <ZeroValue>0</ZeroValue>
+         <!--Add item to the order-->
+         <AddedItem>A</AddedItem>
+         <Yes>Y</Yes>
+         <saleDealer1>501A</saleDealer1>
+         <!--OrderType as Rplacement Order-->
+         <orderTypeReplacement>RE</orderTypeReplacement>
+         <defaultTime>T00:00:00.000</defaultTime>
+         <cukNoDetails>CUK_6001_W</cukNoDetails>
+         <delimiterColon>:</delimiterColon>
+         <noOrderDetailsFault>manageorder-36600-3001-E</noOrderDetailsFault>
+         <noOrderListFault>manageorder-36600-3000-E</noOrderListFault>
+         <!--Configurable data being used by operation getOrderDetails and getOrderDetails_2-->
+         <notApplicableValue>NOT APPLICABLE</notApplicableValue>
+         <!--Configurable data being used by operation getOrderDetails-->
+         <getOrderDetails>
+            <orderEnquiryWarningCode>orderenquiry-36780-6000-W</orderEnquiryWarningCode>
+            <warningCode>manageorder-36600-6000-W</warningCode>
+            <successCode>manageorder-36600-0000-S</successCode>
+            <delimiterT>T</delimiterT>
+            <!--Required for mapping of GetOrderDetails//imei from GetArchiveOrderDetailsResponse//productType-->
+            <imeiProductType>
+               <productType>0</productType>
+               <productType>1</productType>
+               <productType>2</productType>
+               <productType>G</productType>
+               <productType>R1</productType>
+               <productType>R3</productType>
+               <productType>R4</productType>
+               <productType>T</productType>
+               <productType>B</productType>
+               <productType>9</productType>
+               <productType>9V</productType>
+               <productType>BV</productType>
+               <productType>GV</productType>
+               <productType>C</productType>
+               <productType>H</productType>
+            </imeiProductType>
+            <!--Required for mapping of GetOrderDetails//ssn from GetArchiveOrderDetailsResponse//productType-->
+            <ssnProductType>
+               <productType>5</productType>
+               <productType>6</productType>
+               <productType>8</productType>
+               <productType>F</productType>
+               <productType>R</productType>
+               <productType>S</productType>
+               <productType>X</productType>
+            </ssnProductType>
+            <!--Required for mapping of GetOrderDetails//serialNo from GetArchiveOrderDetailsResponse//productType-->
+            <serialNoProductType>
+               <productType>7</productType>
+               <productType>A1</productType>
+               <productType>A</productType>
+               <productType>M</productType>
+               <productType>D</productType>
+               <productType>U</productType>
+               <productType>V</productType>
+               <productType>Z</productType>
+            </serialNoProductType>
+            <!--Required for mapping of GetOrderDetails//category from GetArchiveOrderDetailsResponse//productType-->
+            <productTypeToCategoryMappings>
+               <productTypeToCategoryMapping>
+                  <productTypes>
+                     <productType>7</productType>
+                     <productType>A1</productType>
+                     <productType>A</productType>
+                     <productType>M</productType>
+                     <productType>D</productType>
+                     <productType>U</productType>
+                     <productType>V</productType>
+                     <productType>Z</productType>
+                  </productTypes>
+                  <category>ACC</category>
+               </productTypeToCategoryMapping>
+               <productTypeToCategoryMapping>
+                  <productTypes>
+                     <productType>0</productType>
+                     <productType>1</productType>
+                     <productType>2</productType>
+                     <productType>G</productType>
+                     <productType>R1</productType>
+                     <productType>R3</productType>
+                     <productType>R4</productType>
+                     <productType>T</productType>
+                     <productType>B</productType>
+                     <productType>9</productType>
+                     <productType>9V</productType>
+                     <productType>BV</productType>
+                     <productType>GV</productType>
+                     <productType>C</productType>
+                     <productType>H</productType>
+                  </productTypes>
+                  <category>HAN</category>
+               </productTypeToCategoryMapping>
+               <productTypeToCategoryMapping>
+                  <productTypes>
+                     <productType>N</productType>
+                  </productTypes>
+                  <category>PRL</category>
+               </productTypeToCategoryMapping>
+               <productTypeToCategoryMapping>
+                  <productTypes>
+                     <productType>5</productType>
+                     <productType>6</productType>
+                     <productType>8</productType>
+                     <productType>F</productType>
+                     <productType>R</productType>
+                     <productType>S</productType>
+                     <productType>X</productType>
+                  </productTypes>
+                  <category>PRS</category>
+               </productTypeToCategoryMapping>
+               <productTypeToCategoryMapping>
+                  <productTypes>
+                     <productType>3</productType>
+                     <productType>4</productType>
+                     <productType>E</productType>
+                     <productType>I</productType>
+                     <productType>J</productType>
+                     <productType>K</productType>
+                     <productType>L</productType>
+                     <productType>O</productType>
+                     <productType>P</productType>
+                     <productType>Q</productType>
+                     <productType>W</productType>
+                     <productType>Y</productType>
+                  </productTypes>
+                  <category>MISC</category>
+               </productTypeToCategoryMapping>
+            </productTypeToCategoryMappings>
+            <!--Required for mapping of GetOrderDetails//paymentMethod from GetArchiveOrderDetailsResponse//paymentType-->
+            <paymentTypeToPaymentMethodMappings>
+               <paymentTypeToPaymentMethodMapping>
+                  <paymentType>Y</paymentType>
+                  <paymentMethod>CARD</paymentMethod>
+               </paymentTypeToPaymentMethodMapping>
+               <paymentTypeToPaymentMethodMapping>
+                  <paymentType>N</paymentType>
+                  <paymentMethod>BANK</paymentMethod>
+               </paymentTypeToPaymentMethodMapping>
+            </paymentTypeToPaymentMethodMappings>
+         </getOrderDetails>
+         <validateOrder>
+            <validateOrderRuleName>ValidateOrder_1_0</validateOrderRuleName>
+            <validateOrderSuccessCode>manageorder-36600-0001-S</validateOrderSuccessCode>
+            <validateOrderSuccessDescription>This order is valid.</validateOrderSuccessDescription>
+            <ruleSuccess>true</ruleSuccess>
+         </validateOrder>
+         <getOrderList_2>
+            <operationName>getOrderList_2</operationName>
+         </getOrderList_2>
+         <getOrderDetails_2>
+            <operationName>getOrderDetails_2</operationName>
+            <noOrdersForOrderNumber>utilgetorderdetails-9281-3000-E</noOrdersForOrderNumber>
+            <noOrdersForMSISDN>utilgetorderdetails-9281-3001-E</noOrdersForMSISDN>
+            <errorMap>
+               <destinationErrorCode>manageorder-36600-2001-F</destinationErrorCode>
+            </errorMap>
+         </getOrderDetails_2>
+		 
+		 <!-- Added for click and cllect now project -->
+		  <getOrderDetails_3>
+            <operationName>getOrderDetails_3</operationName>
+            <noOrdersForOrderNumber>AMS:012175</noOrdersForOrderNumber>
+            <noOrdersForMSISDN>AMS:012174</noOrdersForMSISDN>
+            <errorMap>
+               <destinationErrorCode>manageorder-36600-2001-F</destinationErrorCode>
+            </errorMap>
+         </getOrderDetails_3>
+		 <updateOrderCollectionStatus>
+		   <statusCode>manageorder-36600-0000-S</statusCode>
+		   <externalDescription>The request is successfully processed</externalDescription>
+		  </updateOrderCollectionStatus>
+         <unknownSourceError>manageorder-36600-3002-E</unknownSourceError>
+         <unknownDestinationError>manageorder-36600-3999-E</unknownDestinationError>
+         <unknownDestinationErrorDescription>Unknown/Uncaught error has occurred.</unknownDestinationErrorDescription>
+         <successStatusCode>
+            <successStatus>SUCCESSFUL</successStatus>
+            <submitUpgradeOrder_1SuccessStatusCode>manageorder-36600-0001-S</submitUpgradeOrder_1SuccessStatusCode>
+            <submitUpgradeOrder_1SuccessDescription>submitUpgradeOrder_1 successful</submitUpgradeOrder_1SuccessDescription>
+         </successStatusCode>
+         <cardCv2Value>000</cardCv2Value>
+         <submitOrder>
+            <nullMaps>
+               <null>1</null>
+               <null>2</null>
+               <null>3</null>
+            </nullMaps>
+            <statusMap>
+               <addressValidationStatus>0</addressValidationStatus>
+               <status>EQUIFAX</status>
+            </statusMap>
+            <statusMap>
+               <addressValidationStatus>1</addressValidationStatus>
+               <status>BROKEN</status>
+            </statusMap>
+            <statusMap>
+               <addressValidationStatus>2</addressValidationStatus>
+               <status>PROOF</status>
+            </statusMap>
+            <statusMap>
+               <addressValidationStatus>3</addressValidationStatus>
+               <status>NONE</status>
+            </statusMap>
+            <statusMap>
+               <addressValidationStatus>4</addressValidationStatus>
+               <status>PAF</status>
+            </statusMap>
+         </submitOrder>
+         <submitUpgradeOrder_1>
+            <operationName>submitUpgradeOrder_1</operationName>
+         </submitUpgradeOrder_1>
+         <getDeliveryOptions_1>
+            <operationName>getDeliveryOptions_1</operationName>
+         </getDeliveryOptions_1>
+         <misc>MISC</misc>
+         <cardIssuerType>
+            <cardIssuers>
+               <cardIssuer>MAESTRO</cardIssuer>
+               <value>0</value>
+            </cardIssuers>
+            <cardIssuers>
+               <cardIssuer>SOLO</cardIssuer>
+               <value>1</value>
+            </cardIssuers>
+            <cardIssuers>
+               <cardIssuer>VISA</cardIssuer>
+               <value>2</value>
+            </cardIssuers>
+            <cardIssuers>
+               <cardIssuer>MASTERCARD</cardIssuer>
+               <value>3</value>
+            </cardIssuers>
+            <cardIssuers>
+               <cardIssuer>DELTA</cardIssuer>
+               <value>4</value>
+            </cardIssuers>
+            <cardIssuers>
+               <cardIssuer>AMEX</cardIssuer>
+               <value>5</value>
+            </cardIssuers>
+            <cardIssuers>
+               <cardIssuer>ELECTRON</cardIssuer>
+               <value>16</value>
+            </cardIssuers>
+         </cardIssuerType>
+         <creditCheckstatusTypes>
+            <creditCheckstatusType>
+               <value>1</value>
+               <status>UNCONDITIONALLY_ACCEPTED</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>2</value>
+               <status>CONDITIONALLY_ACCEPTED</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>3</value>
+               <status>DEPOSIT</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>4</value>
+               <status>REJECTED</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>5</value>
+               <status>REFERRED</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>6</value>
+               <status>BROKEN</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>7</value>
+               <status>NOT DONE</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>8</value>
+               <status>DEPOSIT_100</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>9</value>
+               <status>DEPOSIT_POR</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>10</value>
+               <status>DEPOSIT_100_POR</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>11</value>
+               <status>POR_ONLY</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>12</value>
+               <status>SIM_ONLY</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>13</value>
+               <status>BARS</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>14</value>
+               <status>DEPOSIT_VARIABLE</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>15</value>
+               <status>DEPOSIT_BARS</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>16</value>
+               <status>SIM_ONLY_BARS</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>17</value>
+               <status>SIM_ONLY_DEPOSIT</status>
+            </creditCheckstatusType>
+            <creditCheckstatusType>
+               <value>18</value>
+               <status>SIM_ONLY_DEPOSIT_BARS</status>
+            </creditCheckstatusType>
+         </creditCheckstatusTypes>
+         <timeSlots>
+            <timeSlot>NEXT DAY DELIVERY</timeSlot>
+         </timeSlots>
+         <clickAndCollect>CLICK_CLLCT</clickAndCollect>
+		 <clickAndCollectNow>CLICK_CLLCT_NOW</clickAndCollectNow>
+         <!--07/05/2012      1.4                 Dinsa Devassy      Added below  parameters (for adressmapping)  as a part of OATC CCS UPGRADE SHOP in submitUpgradeOrder_1-->
+         <houseNameOrNumber>houseNameOrNumber should be populated.</houseNameOrNumber>
+         <postalStreet>postalStreet should be populated.</postalStreet>
+         <invalidInput>manageorder-36600-4501-V</invalidInput>
+         <BackenedApplicationName>CUK EAI</BackenedApplicationName>
+         <setConsignmentStateInOrder_1>
+            <operationName>setConsignmentStateInOrder_1</operationName>
+            <statusCode>manageorder-36600-0000-S</statusCode>
+            <externalDescription>The request is successfully processed.</externalDescription>
+         </setConsignmentStateInOrder_1>
+         <status>
+            <key>UNCOLLECTED1</key>
+            <value>UNCOLLECTED_1</value>
+         </status>
+         <status>
+            <key>UNCOLLECTED2</key>
+            <value>UNCOLLECTED_2</value>
+         </status>
+         <getConsignmentDetails_1>
+            <operationName>getConsignmentDetails_1</operationName>
+         </getConsignmentDetails_1>
+         <confirmOrderPayment_1>
+            <operationName>confirmOrderPayment_1</operationName>
+            <statusCode>manageorder-36600-0000-S</statusCode>
+            <externalDescription>The request is successfully processed.</externalDescription>
+         </confirmOrderPayment_1>
+      </manageOrder_2_0>
+   </service-config-data>
+</service-config-envelope>

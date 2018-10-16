@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<ec:errorMapConfig	xmlns:ec="http://soa.o2.co.uk/config/ErrorMapConfig">
+
+	<ec:service name="ManageOrder_1_0">
+	
+	<ec:operation name="getOrderList">
+		<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>manageorder-36600-3000-E</ec:code>					
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-3000-E</ec:code>
+					<ec:description>No orders found for the given order identifier.</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+	</ec:operation>
+	
+	<ec:operation name="getOrderDetails">
+		<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>CUK_6001_W</ec:code>
+					<ec:code>manageorder-36600-3001-E</ec:code>	
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-3001-E</ec:code>
+					<ec:description>No order details found for the given order identifier</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+	</ec:operation>
+	
+	
+	<ec:commonMap>
+			<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>BEA-382505</ec:code>
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-4000-V</ec:code>
+					<ec:description>The request does not comply with the XSD schema.</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+			
+			<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>BEA-380002</ec:code>
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-2000-F</ec:code>
+					<ec:description>One or more back ends may be down. Please try again later.</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+			
+			<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>BEA-382030</ec:code>
+					<ec:code>BEA-381916</ec:code>
+					<ec:code>BEA-382000</ec:code>
+					<ec:code>BEA-382510</ec:code>
+					<ec:code>BEA-382513</ec:code>
+					<ec:code>BEA-382515</ec:code>
+					<ec:code>BEA-382516</ec:code>
+					<ec:code>AMS:011108</ec:code>
+					<ec:code>manageorder-36600-2001-F</ec:code>
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-2001-F</ec:code>
+					<ec:description>Internal service error. Please contact service support for help on this.</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+			
+			<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>CUK_3001_E</ec:code>
+					<ec:code>EAI:CAN0010</ec:code>
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-2002-F</ec:code>
+					<ec:description>Backend Internal error. Please try again later.</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+			
+			<ec:errorMap>
+				<ec:sourceErrorCodes>
+					<ec:code>BEA-380000</ec:code>
+					<ec:code>BEA-381918</ec:code>
+				</ec:sourceErrorCodes>
+				<ec:destErrorCode>
+					<ec:code>manageorder-36600-2003-F</ec:code>
+					<ec:description>Service call has timed out. Please resubmit your request later.</ec:description>
+				</ec:destErrorCode>
+			</ec:errorMap>
+			
+		
+	</ec:commonMap>
+	
+	<ec:unknownError>
+		<ec:destErrorCode>
+			<ec:code>manageorder-36600-3002-E</ec:code>
+			<ec:description>Unknown/Uncaught error has occurred. Please contact service support for help on this.</ec:description>
+		</ec:destErrorCode>
+	</ec:unknownError>
+	
+	</ec:service>
+
+</ec:errorMapConfig>

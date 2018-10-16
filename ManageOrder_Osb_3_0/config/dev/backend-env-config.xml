@@ -1,0 +1,25 @@
+<cus:Customizations xmlns:cus="http://www.bea.com/wli/config/customizations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xt="http://www.bea.com/wli/config/xmltypes">
+  <cus:customization xsi:type="cus:EnvValueCustomizationType">
+    <cus:description/>
+    <cus:envValueAssignments>
+      <xt:envValueType>Service URI Table</xt:envValueType>
+      <xt:location xsi:nil="true"/>
+      <xt:owner>
+        <xt:type>BusinessService</xt:type>
+        <!--  
+                    THIS PATH should be updated to reflect <ALSBProject>/<folder>/<ALSB Business Service>
+        -->
+        <xt:path>ManageOrder_2_0/businessservices/OrderEnquiry_1_0_0</xt:path>
+      </xt:owner>
+      <xt:value>
+        <tran:tableElement xmlns:tran="http://www.bea.com/wli/sb/transports">
+           <!--  
+                    THIS URL REPRESENTS THE ACTUAL URL FOR AN ENVIRONMENT (Applied to the ALSB Business Service) 
+            -->
+          <tran:URI>http://puck.dev.o2.co.uk:8080/sim/ServiceFactory/hops/OrderEnquiry_1_0</tran:URI>
+          <tran:weight>0</tran:weight>
+        </tran:tableElement>
+      </xt:value>
+    </cus:envValueAssignments>
+  </cus:customization>
+</cus:Customizations>
